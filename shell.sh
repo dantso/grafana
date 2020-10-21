@@ -30,10 +30,6 @@ scrape_configs:
       - targets: ['localhost:9090']
 EOF
 sudo chown prometheus:prometheus /etc/prometheus/prometheus.yml
-sudo bash /home/ubuntu/grafana/prom.sh &
-PID=$!
-sleep 10
-kill $PID
 sudo cat <<EOF >/etc/systemd/system/prometheus.service
 [Unit]
 Description=Prometheus
