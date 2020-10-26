@@ -22,7 +22,6 @@ rm -rf prometheus-2.21.0.linux-amd64.tar.gz prometheus-2.21.0.linux-amd64
 sudo cat <<EOF >/etc/prometheus/prometheus.yml
 global:
   scrape_interval: 15s
-
 scrape_configs:
   - job_name: 'prometheus'
     scrape_interval: 5s
@@ -35,7 +34,6 @@ sudo cat <<EOF >/etc/systemd/system/prometheus.service
 Description=Prometheus
 Wants=network-online.target
 After=network-online.target
-
 [Service]
 User=prometheus
 Group=prometheus
@@ -45,7 +43,6 @@ ExecStart=/usr/local/bin/prometheus \
     --storage.tsdb.path /var/lib/prometheus/ \
     --web.console.templates=/etc/prometheus/consoles \
     --web.console.libraries=/etc/prometheus/console_libraries
-
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -63,13 +60,11 @@ sudo cat <<EOF >/etc/systemd/system/node_exporter.service
 Description=Node Exporter
 Wants=network-online.target
 After=network-online.target
-
 [Service]
 User=node_exporter
 Group=node_exporter
 Type=simple
 ExecStart=/usr/local/bin/node_exporter
-
 [Install]
 WantedBy=multi-user.target
 EOF
@@ -79,7 +74,6 @@ sudo systemctl enable node_exporter
 sudo cat <<EOF >/etc/prometheus/prometheus.yml
 global:
   scrape_interval: 15s
-
 scrape_configs:
   - job_name: 'prometheus'
     scrape_interval: 5s
