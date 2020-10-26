@@ -3,4 +3,4 @@ WORKDIR /app
 ADD . /app
 
 EXPOSE 80
-CMD ["bash", "setup.sh"]
+CMD ["chmod", "+x", "setup.sh"]
